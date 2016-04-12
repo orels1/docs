@@ -46,7 +46,7 @@ Now you have a basic command interface! Let's make it more interesting, shall we
 ###Mentioning users
 Sometimes I want to punch something, or someone, but I'm weak, and I need some help. That's why we'll make a bot puch someone, instead of ourselves.
 
- 1. In your code, change `async def mycom(self):` to `async def punch(self, user : discord.Member):` so now it will react to `[p]punch` and accept a user mention as an argument
+In your code, change `async def mycom(self):` to `async def punch(self, user : discord.Member):` so now it will react to `[p]punch` and accept a user mention as an argument
  
 The command's code should now look something like this
 
@@ -63,23 +63,25 @@ async def punch(self, user : discord.Member):
 ...
 ```
 
- 2. But if you reload the cog with `[p]reload mycog` it will still say `I can do stuff` which is not what we want
- 3. Change your response to :
+But if you reload the cog with `[p]reload mycog` it will still say `I can do stuff` which is not what we want
+
+Change your response to :
 ```python
 await self.bot.say("ONE PUNCH! And " + user.mention + " is out! ლ(ಠ益ಠლ)")
 ```
 
 *You can use any message, just remember to `+ user.mention` somewhere in there, for cog to target your prey!*
 
- 4. Reload the cog with `[p]reload mycog`
+Reload the cog with `[p]reload mycog`
 
 Now you can punch other people without getting your hands dirty, awesome! You can try to play around with it as you like!
 
 ###Getting info from webpages
 Now, something a bit more usefull, although, not as fun. One of the most popular reasons you might want to create a custom cog - is to get info from some webpage. We can totally do that, so let's dive into it!
 
- 1. We need [BeautifulSoup4](http://www.crummy.com/software/BeautifulSoup/bs4/doc/), Red requires you to install one, so it should be in your system already, but if it is not, run `pip3 install beautifulsoup4` and you should be good to go
- 2. Now, add the following code after all of your import statements
+We need [BeautifulSoup4](http://www.crummy.com/software/BeautifulSoup/bs4/doc/), Red requires you to install one, so it should be in your system already, but if it is not, run `pip3 install beautifulsoup4` and you should be good to go
+
+Now, add the following code after all of your import statements
 ```python
 ...
 
@@ -92,7 +94,8 @@ except:
 ...
 ```
 It's pretty straightforward, you just try to import bs4 from the module, and if it fails - we save that into variable
- 3. But that's not enough, we need to tell user that something went wrong, so modify your cog's setup section like this
+  
+But that's not enough, we need to tell user that something went wrong, so modify your cog's setup section like this
 ```python
 ...
 
@@ -107,7 +110,7 @@ So now, if the user has no BS4 installed, it will throw an error
 RuntimeError: You need to run pip3 install beautifulsoup4
 ```
 That's just what we need!
- 4. Now, in order to perform requests, we need to add `aiohttp` to our import list, just add `import aiohttp` after the BS4 imports. Your imports section should look something like this
+Now, in order to perform requests, we need to add `aiohttp` to our import list, just add `import aiohttp` after the BS4 imports. Your imports section should look something like this
 ```python
 import discord
 from discord.ext import commands
@@ -121,8 +124,8 @@ import aiohttp
 ...
 ```
 Perfect!
- 5. With all the modules in place, we can proceed to requests. First of all, we need to chose a page we will be testing. I'm a bit into DOTA2, so I will try to parse steamdb's dota page for that.
- Remove your current `await self.bot.say()` code and add the following
+With all the modules in place, we can proceed to requests. First of all, we need to chose a page we will be testing. I'm a bit into DOTA2, so I will try to parse steamdb's dota page for that.
+Remove your current `await self.bot.say()` code and add the following
 ```python
 url = "https://steamdb.info/app/570/graphs/" #build the web adress
 async with aiohttp.get(url) as response:
@@ -141,9 +144,10 @@ Woah, that's kinda a lot of code, isn't it. But it's pretty simple.
 
 So, not that hard, right? BS4 allows you to get any info from the webpage, which you can use as you want, and send it back to your channel
 
- 6. Now, we will change the command's name to something more appropriate, and remove the `user : discord.Member` argument, as we don't need it.
+ Now, we will change the command's name to something more appropriate, and remove the `user : discord.Member` argument, as we don't need it.
  Something like `async def dotanow(self):` should be fitting.
- 7. Reload your cog with `[p]reload mycog` and type `[p]dotanow` in chat, the bot should respond with an amount of players online. Neat!
+   
+ Reload your cog with `[p]reload mycog` and type `[p]dotanow` in chat, the bot should respond with an amount of players online. Neat!
 
 The finished command's code should look something like this
 ```python
