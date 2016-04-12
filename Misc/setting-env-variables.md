@@ -3,7 +3,7 @@ I collected the ways to add environmental variables for three main platforms.
 
 ##Windows
 1. Launch a command prompt with admin rights. To do that, press windows key on your keyboard, and type "cmd", rightclick on "Command Prompt" and choose "Run as administrator".
-2. Type `SETX <NAME OF A VARIABLE> <VALUE OF A VARIABLE>. For example:
+2. Type `SETX <NAME OF A VARIABLE> <VALUE OF A VARIABLE>`. For example:
 ```
 SETX DOTA_API_KEY 8213dsfs2sc3214ac32
 ```
